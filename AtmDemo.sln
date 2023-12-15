@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtmDemo", "AtmDemo.csproj", "{303799E3-3BE8-4025-BDB8-C4BC92AB2114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtmDemo", "AtmDemo.csproj", "{303799E3-3BE8-4025-BDB8-C4BC92AB2114}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtmDataAccess", "..\AtmDataAccess\AtmDataAccess.csproj", "{3D8AFD31-36F6-444F-8771-4EC3C2FCB0D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{303799E3-3BE8-4025-BDB8-C4BC92AB2114}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{303799E3-3BE8-4025-BDB8-C4BC92AB2114}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{303799E3-3BE8-4025-BDB8-C4BC92AB2114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D8AFD31-36F6-444F-8771-4EC3C2FCB0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D8AFD31-36F6-444F-8771-4EC3C2FCB0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D8AFD31-36F6-444F-8771-4EC3C2FCB0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D8AFD31-36F6-444F-8771-4EC3C2FCB0D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

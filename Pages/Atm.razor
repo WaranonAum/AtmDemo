@@ -1,7 +1,105 @@
-﻿<PageTitle>ATM</PageTitle>
+﻿@page "/atm"
+@using AtmDataAccess.Data
+@using AtmDataAccess.Model
+@using System.ComponentModel.DataAnnotations
+@inject IBalanceData _balanceData
+<PageTitle>ATM</PageTitle>
 
 <h1>ATM Demo</h1>
 
+            @if (balancList.Count > 0)
+            {
+                <p class="list-group-item list-group-item-action active" aria-current="true">
+                    จำนวนเงินคงเหลือ
+                </p>
+                @foreach (var item in balancList)
+                {
+                <div class="row g-3">
+                    <div class="col-auto">
+                        <input type="text" readonly class="form-control-plaintext" value="จำนวน ธนบัตร @item.BankNoteType">
+                    </div>
+                    <div class="col-auto">
+                    <input readonly class="form-control" value="@item.Quantity">
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" readonly class="form-control-plaintext" value="ฉบับ">
+                    </div>
+                </div>
+        <p></p>
+                }
+            }
+            <p></p>
+<p class="list-group-item list-group-item-action active" aria-current="true">กดเงิน</p>
+
+<div class="row g-3">
+    <div class="col-auto">
+        <input type="number" class="form-control" @bind-value="requiredWithdrow" placeholder="จำนวนเงินที่ต้องการถอน">
+    </div>
+    <div class="col-auto">
+        <button @onclick="Withdrow" type="submit" class="btn btn-primary mb-3">กดเงิน</button>
+    </div>
+</div>
+@if(valifyMessage.Count > 0)
+{
+    foreach(var item in valifyMessage)
+    {
+        <div class="alert alert-danger" role="alert">
+            @item
+        </div>
+    }
+}
 @code {
 
+    private List<BalanceModel> balancList = new();
+    [Range(100, 100000000)]
+    private int requiredWithdrow = 0;
+    private List<string> valifyMessage = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        balancList = await _balanceData.PrepBankNote();
+    }
+
+    private async Task Withdrow()
+    {
+        if (await ValifyRequiredWithdrow())
+        {
+
+        }
+    }
+
+    private async Task<bool> ValifyRequiredWithdrow()
+    {
+        bool result = false;
+        valifyMessage.Clear();
+
+        if (await minCorrect())
+        {
+            result = true;
+            valifyMessage.Clear();
+        }
+        else
+        {
+            await Task.Delay(200);
+            valifyMessage.Add("จำนวนเงินไม่ถูกต้อง");
+        }
+
+        return result;
+    }
+
+    private async Task<bool> minCorrect()
+    {
+        bool result = false;
+        valifyMessage.Clear();
+
+        for (int i = 100; i <= requiredWithdrow; i += 100)
+        {
+            if (i == requiredWithdrow)
+            {
+                result = true;
+            }
+        }
+
+        return result;
+    }
 }
